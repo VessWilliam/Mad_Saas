@@ -1,0 +1,29 @@
+{
+  "name": "mad_nuxt",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
+    "@antv/g2plot": "^2.4.35",
+    "@pinia/nuxt": "^0.11.3",
+    "@vee-validate/nuxt": "^4.15.1",
+    "ant-design-vue": "^4.2.6",
+    "axios": "^1.13.2",
+    "nuxt": "^4.2.1",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.24",
+    "vue-router": "^4.6.3",
+    "yup": "^1.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "id": 2,
+    "title": "Kingdoms & Conquest",
+    "genre": "Strategy",
+    "platform": "PC",
+    "price": 34.99,
+    "stock": 45,
+    "status": "Pre-order"
+  },
+  {
+    "id": 3,
+    "title": "Pixel Quest",
+    "genre": "Platformer",
+    "platform": "Switch",
+    "price": 14.99,
+    "stock": 200,
+    "status": "Available"
+  },
+  {
+    "id": 4,
+    "title": "Starlight Odyssey",
+    "genre": "RPG",
+    "platform": "PS5",
+    "price": 59.99,
+    "stock": 10,
+    "status": "Pre-order"
+  },
+  {
+    "id": 5,
+    "title": "Battlefront Arena",
+    "genre": "Strategy",
+    "platform": "Xbox",
+    "price": 49.99,
+    "stock": 75,
+    "status": "Available"
+  },
+  {
+    "id": 6,
+    "title": "Farmstead Dreams",
+    "genre": "Simulation",
+    "platform": "PC",
+    "price": 24.99,
+    "stock": 140,
+    "status": "Available"
+  },
+  {
+    "id": 7,
+    "title": "Cybernetic Detective",
+    "genre": "Adventure",
+    "platform": "PC",
+    "price": 29.99,
+    "stock": 60,
+    "status": "Available"
+  },
+  {
+    "id": 8,
+    "title": "Rocket League Retro",
+    "genre": "Sports",
+    "platform": "Switch",
+    "price": 9.99,
+    "stock": 310,
+    "status": "Available"
+  },
+  {
+    "id": 9,
+    "title": "Mystic Gardens VR",
+    "genre": "Puzzle",
+    "platform": "VR",
+    "price": 19.99,
+    "stock": 22,
+    "status": "Available"
+  },
+  {
+    "title": "Mario Save Peach",
+    "genre": "Dungeon",
+    "platform": "Switch",
+    "price": 100,
+    "stock": 10,
+    "status": "Available",
+    "id": 10
+  },
+  {
+    "title": "Digimon",
+    "genre": "Strategy",
+    "platform": "Switch",
+    "price": 10,
+    "stock": 100,
+    "status": "Pre-order",
+    "id": 11
+  }
+]
