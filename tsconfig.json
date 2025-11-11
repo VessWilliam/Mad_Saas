@@ -1,0 +1,11 @@
+{
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./app/*", "./*"],
+      "@/*": ["./app/*", "./*"],
+      "~/composables/*": ["./app/composables/*"],
+      "~/constants/*": ["./app/constants/*"]
+    }
+  }
+}

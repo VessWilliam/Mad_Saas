@@ -1,13 +1,12 @@
-# Mad Saas Stimulate Game Store  🧸
+# Mad Saas Stimulate Game Store 🧸
 
 Explore new framework approach with Nuxt + Vue.
 
-This project simulates a Game Store UI 
+This project simulates a Game Store UI
 
-built as a Single-Page Application (SPA) — a front-end only 
+built as a Single-Page Application (SPA) — a front-end only
 
 experience designed for learning, prototyping, and UI experimentation.
-
 
 - 🌀 Nuxt - Vue framework (SPA mode)
 - ⚡ Vue —Reactive frontend framework
@@ -20,20 +19,20 @@ experience designed for learning, prototyping, and UI experimentation.
 
 # Desktop View
 
-![alt text](image.png)
+![alt text](./images/image.png)
 
-![alt text](image-1.png)
+![alt text](./images/image-1.png)
 
-![alt text](image-2.png)
+![alt text](./images/image-2.png)
 
-![alt text](image-3.png)
+![alt text](./images/image-3.png)
 
-# Mobile View 
+# Mobile View
 
-![alt text](image-4.png)
+![alt text](./images/image-4.png)
 
-![alt text](image-6.png)
+![alt text](./images/image-6.png)
 
-![alt text](image-7.png)
+![alt text](./images/image-7.png)
 
-![alt text](image-8.png)
+![alt text](./images/image-8.png)

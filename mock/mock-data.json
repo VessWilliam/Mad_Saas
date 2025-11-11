@@ -9,15 +9,6 @@
     "status": "Pre-order"
   },
   {
-    "id": 3,
-    "title": "Pixel Quest",
-    "genre": "Platformer",
-    "platform": "Switch",
-    "price": 14.99,
-    "stock": 200,
-    "status": "Available"
-  },
-  {
     "id": 4,
     "title": "Starlight Odyssey",
     "genre": "RPG",
@@ -88,5 +79,23 @@
     "stock": 100,
     "status": "Pre-order",
     "id": 11
+  },
+  {
+    "title": "Pokemon ZA ",
+    "genre": "Petting",
+    "platform": "Switch",
+    "price": 500,
+    "stock": 200,
+    "status": "Available",
+    "id": 12
+  },
+  {
+    "title": "HunterX",
+    "genre": "Action",
+    "platform": "PS5",
+    "price": 250,
+    "stock": 500,
+    "status": "Available",
+    "id": 13
   }
 ]
