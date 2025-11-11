@@ -17,3 +17,23 @@ experience designed for learning, prototyping, and UI experimentation.
 - 🗂️ Ant Design Vue - UI library for layout and forms
 - ⚙️ Axios - Data fetching and mock API handling
 - 💻 TypeScript - Type-safe development
+
+# Desktop View
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
+# Mobile View 
+
+![alt text](image-4.png)
+
+![alt text](image-6.png)
+
+![alt text](image-7.png)
+
+![alt text](image-8.png)
