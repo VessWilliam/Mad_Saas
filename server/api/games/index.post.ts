@@ -1,9 +1,9 @@
-import type { GameModel } from "~~/types/game_model";
+import type { GameModel } from "@/types/game_model";
 import {
   readGamefile,
   writeGamefile,
   generateNewId,
-} from "~~/server/utils/filehelper";
+} from "../../utils/filehelper";
 import { readBody } from "h3";
 
 export default defineEventHandler(async (event) => {

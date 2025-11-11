@@ -11,8 +11,9 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
-    "@antv/g2plot": "^2.4.35",
+    "@antv/g2plot": "^2.3.32",
     "@vee-validate/nuxt": "^4.15.1",
+    "@vee-validate/yup": "^4.15.1",
     "ant-design-vue": "^4.2.6",
     "axios": "^1.13.2",
     "nuxt": "^4.2.1",

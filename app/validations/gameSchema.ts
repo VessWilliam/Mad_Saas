@@ -1,5 +1,5 @@
 import * as yup from 'yup'
-import type { GameModel } from '~~/types/game_model'
+import type { GameModel } from '@/types/game_model'
 
 export const gameSchema: yup.ObjectSchema<Partial<GameModel>> = yup.object({
   id: yup.number().optional(),

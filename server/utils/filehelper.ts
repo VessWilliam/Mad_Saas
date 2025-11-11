@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "fs/promises";
 import { resolve } from "path";
-import type { GameModel } from "~~/types/game_model";
+import type { GameModel } from "@/types/game_model";
 
 const filePath = resolve("./mock/mock-data.json");
 

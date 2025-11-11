@@ -1,8 +1,8 @@
-import type { GameModel } from "~~/types/game_model";
+import type { GameModel } from "@/types/game_model";
 import {
   readGamefile,
   writeGamefile,
-} from "~~/server/utils/filehelper";
+} from "../../utils/filehelper";
 
 export default defineEventHandler(async (event) => {
   const res = await readBody<Partial<GameModel>>(event);
@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   if (index === -1)
     throw createError({ statusCode: 404, message: "Game not found" });
 
-  games[index] = { ...games[index], ...res };
+  games[index] = { ...games[index], ...res } as GameModel;
 
   await writeGamefile(games);
   return games[index];

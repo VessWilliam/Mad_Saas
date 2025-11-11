@@ -1,3 +1,3 @@
-import { readGamefile } from "~~/server/utils/filehelper";
+import { readGamefile } from "../../utils/filehelper";
 
 export default defineEventHandler(async () => await readGamefile());

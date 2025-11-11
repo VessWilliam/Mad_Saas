@@ -3,7 +3,7 @@ import { capitalize, ref } from 'vue'
 import GameTable from '~/components/GameTable.vue'
 import { useGames } from '~/composables/useGames'
 import { useAntd } from '~/composables/useAntd'
-import type { GameModel } from "~~/types/game_model";
+import type { GameModel } from "@/types/game_model";
 import { useForm, Field } from 'vee-validate';
 import { gameSchema } from '~/validations/gameSchema';
 import { statusOptions } from '~/constants/statusOptions';

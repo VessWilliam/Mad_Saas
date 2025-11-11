@@ -1,4 +1,4 @@
-import { readGamefile, writeGamefile } from "~~/server/utils/filehelper";
+import { readGamefile, writeGamefile } from "../../utils/filehelper";
 
 export default defineCachedEventHandler(async (event) => {
   const id = Number(event.context.params?.id);
