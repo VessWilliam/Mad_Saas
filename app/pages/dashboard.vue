@@ -62,6 +62,8 @@ const handleCancel = () => {
 }
 </script>
 
+
+
 <template>
   <div>
     <div class="button-container">
@@ -70,7 +72,7 @@ const handleCancel = () => {
       </AButton>
     </div>
     <GameTable :games="games" @edit="openEdit" @delete="deleteGame" />
-    <AModal v-model:visible="showModel" title="Game Form" @ok="saveGame" @cancel="handleCancel">
+    <AModal v-model:open="showModel" title="Game Form" @ok="saveGame" @cancel="handleCancel">
       <AForm layout="vertical">
         <Field name="title" v-slot="{ value, handleChange, handleBlur, errorMessage }">
           <AFormItem label="Title" :help="errorMessage" :validate-status="errorMessage ? 'error' : ''">
