@@ -1,118 +1,130 @@
 <script setup lang="ts">
-import { capitalize, ref } from 'vue'
-import GameTable from '~/components/GameTable.vue'
-import { useGames } from '~/composables/useGames'
-import { useAntd } from '~/composables/useAntd'
-import type { GameModel } from "@/types/game_model";
-import { useForm, Field } from 'vee-validate';
-import { gameSchema } from '~/validations/gameSchema';
-import { statusOptions } from '~/constants/statusOptions';
+import { ref, onMounted } from "vue";
+import { capitalize } from "vue";
+import GameTable from "~/components/GameTable.vue";
+import { useGames } from "~/composables/useGames";
+import { useAntd } from "~/composables/useAntd";
+import { useForm, Field } from "vee-validate";
+import { gameSchema } from "~/validations/gameSchema";
+import { statusOptions } from "~/constants/statusOptions";
+import type { GameModel } from "~/types/game_model";
 
-const { AModal, AForm, AFormItem, AInput, ANumberPicker, AButton, ASelect } = useAntd()
-const { games, getGames, addGame, updateGame, deleteGame } = useGames()
-const showModel = ref(false)
-const editModel = ref<GameModel | null>(null)
+const { AModal, AForm, AFormItem, AInput, ANumberPicker, AButton, ASelect } =
+  useAntd();
+const { games, getGames, addGame, updateGame, deleteGame } = useGames();
 
-onMounted(async () => await getGames())
+const showModal = ref(false);
+const editModel = ref<GameModel | null>(null);
+const isEditMode = ref(false);
 
-const { handleSubmit, resetForm } = useForm<GameModel>({
+const initialValues: Partial<GameModel> = {
+  title: "",
+  genre: "",
+  platform: "",
+  price: 0,
+  stock: 0,
+  status: "Available",
+};
+
+onMounted(getGames);
+
+const { handleSubmit, resetForm } = useForm<Partial<GameModel>>({
   validationSchema: gameSchema,
-  initialValues: {
-    title: '',
-    genre: '',
-    platform: '',
-    price: 0,
-    stock: 0,
-    status: 'Available',
-  },
-})
+  initialValues,
+});
 
-const openAdd = () => {
-  editModel.value = null
-  resetForm({
-    values: {
-      title: '',
-      genre: '',
-      platform: '',
-      price: 0,
-      stock: 0,
-      status: 'Available',
-    }
-  })
-  showModel.value = true
-}
+const openAddModal = () => {
+  editModel.value = null;
+  isEditMode.value = false;
+  resetForm({ values: initialValues });
+  showModal.value = true;
+};
 
-const openEdit = (game: GameModel) => {
-  editModel.value = game
-  resetForm({ values: { ...game } })
-  showModel.value = true
-}
+const openEditModal = (game: GameModel) => {
+  editModel.value = game;
+  isEditMode.value = true;
+  resetForm({ values: { ...game } });
+  showModal.value = true;
+};
 
 const saveGame = handleSubmit(async (gameData) => {
-  editModel.value ? await updateGame(editModel.value.id, gameData) :
-    await addGame(gameData)
-  await getGames()
-  showModel.value = false
-  resetForm()
-})
+  editModel.value
+    ? await updateGame(editModel.value.id, gameData)
+    : await addGame(gameData);
+  await getGames();
+  showModal.value = false;
+  resetForm();
+});
 
-const handleCancel = () => {
-  showModel.value = false
-  resetForm()
-}
+const closeModal = () => {
+  showModal.value = false;
+  resetForm();
+};
+
+const formFields = Object.keys(gameSchema.fields).filter(
+  (f) => f !== "id"
+) as (keyof GameModel)[];
+
+
+const getFieldOptions = (field: keyof GameModel) =>
+  field === "status" ? statusOptions : undefined;
+
+const formatFieldLabel = (field: keyof GameModel) =>
+  field.charAt(0).toUpperCase() + field.slice(1);
+
+const handleFieldChange = (type: string, val: any, handleChange: Function) => {
+  switch (type) {
+    case "input":
+      handleChange(capitalize(val));
+      break;
+    case "number":
+      handleChange(Number(val));
+      break;
+    default:
+      handleChange(val);
+      break;
+  }
+};
+
+const getFieldType = (field: keyof GameModel) => {
+  switch (field) {
+    case "price":
+    case "stock":
+      return "number";
+    case "status":
+      return "select";
+    default:
+      return "input";
+  }
+};
 </script>
 
-
-
 <template>
-  <div>
+  <div class="game-management">
     <div class="button-container">
-      <AButton type="primary" style="margin-bottom:1px; " @click="openAdd">
-        Add Game
-      </AButton>
+      <AButton type="primary" @click="openAddModal">Add Game</AButton>
     </div>
-    <GameTable :games="games" @edit="openEdit" @delete="deleteGame" />
-    <AModal v-model:open="showModel" title="Game Form" @ok="saveGame" @cancel="handleCancel">
+
+    <GameTable :games="games" @edit="openEditModal" @delete="deleteGame" />
+
+    <AModal v-model:open="showModal" :title="isEditMode ? 'Edit Game' : 'Add Game'" @ok="saveGame" @cancel="closeModal">
       <AForm layout="vertical">
-        <Field name="title" v-slot="{ value, handleChange, handleBlur, errorMessage }">
-          <AFormItem label="Title" :help="errorMessage" :validate-status="errorMessage ? 'error' : ''">
-            <AInput :value="value" @update:value="v => handleChange(capitalize(v))" @blur="handleBlur" />
-          </AFormItem>
-        </Field>
+        <template v-for="field in formFields" :key="field">
+          <Field :name="field" v-slot="{ value, handleChange, handleBlur, errorMessage }">
+            <AFormItem :label="formatFieldLabel(field)" :help="errorMessage"
+              :validate-status="errorMessage ? 'error' : ''">
+              <ASelect v-if="getFieldType(field) === 'select'" :value="value" :options="getFieldOptions(field)"
+                @update:value="handleChange" @blur="handleBlur" />
 
-        <Field name="genre" v-slot="{ value, handleChange, handleBlur, errorMessage }">
-          <AFormItem label="Genre" :help="errorMessage" :validate-status="errorMessage ? 'error' : ''">
-            <AInput :value="value" @update:value="v => handleChange(capitalize(v))" @blur="handleBlur" />
-          </AFormItem>
-        </Field>
+              <ANumberPicker v-else-if="getFieldType(field) === 'number'" :value="value ?? 0" :min="0" :step="1"
+                style="width: 100%" @update:value="handleChange" @blur="handleBlur" />
 
-        <Field name="platform" v-slot="{ value, handleChange, handleBlur, errorMessage }">
-          <AFormItem label="Platform" :help="errorMessage" :validate-status="errorMessage ? 'error' : ''">
-            <AInput :value="value" @update:value="v => handleChange(capitalize(v))" @blur="handleBlur" />
-          </AFormItem>
-        </Field>
-
-        <Field name="price" v-slot="{ value, handleChange, handleBlur, errorMessage }">
-          <AFormItem label="Price" :help="errorMessage" :validate-status="errorMessage ? 'error' : ''">
-            <ANumberPicker :value="value" @update:value="handleChange" @blur="handleBlur" :min="0" :step="1"
-              style="width:100%" />
-          </AFormItem>
-        </Field>
-
-        <Field name="stock" v-slot="{ value, handleChange, handleBlur, errorMessage }">
-          <AFormItem label="Stock" :help="errorMessage" :validate-status="errorMessage ? 'error' : ''">
-            <ANumberPicker :value="value" @update:value="handleChange" @blur="handleBlur" :min="0" :step="1"
-              style="width:100%" />
-          </AFormItem>
-        </Field>
-
-        <Field name="status" v-slot="{ value, handleChange, handleBlur, errorMessage }">
-          <AFormItem label="Status" :help="errorMessage" :validate-status="errorMessage ? 'error' : ''">
-
-            <ASelect :value="value" @update:value="handleChange" @blur="handleBlur" :options="statusOptions" />
-
-          </AFormItem>
-        </Field>
+              <AInput v-else :value="value" @update:value="
+                (val) => handleFieldChange('input', val, handleChange)
+              " @blur="handleBlur" />
+            </AFormItem>
+          </Field>
+        </template>
       </AForm>
     </AModal>
   </div>
@@ -120,7 +132,7 @@ const handleCancel = () => {
 
 <style scoped>
 .button-container {
-  padding: 0px;
   padding-left: 30px;
+  margin-bottom: 10px;
 }
 </style>

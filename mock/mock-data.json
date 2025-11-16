@@ -81,15 +81,6 @@
     "id": 11
   },
   {
-    "title": "Pokemon ZA ",
-    "genre": "Petting",
-    "platform": "Switch",
-    "price": 500,
-    "stock": 200,
-    "status": "Available",
-    "id": 12
-  },
-  {
     "title": "HunterX",
     "genre": "Action",
     "platform": "PS5",
@@ -97,5 +88,23 @@
     "stock": 500,
     "status": "Available",
     "id": 13
+  },
+  {
+    "title": "NewGame",
+    "genre": "RPG",
+    "platform": "Nintendo",
+    "price": 100,
+    "stock": 100,
+    "status": "Pre-order",
+    "id": 14
+  },
+  {
+    "title": "DanDa",
+    "genre": "Comedy",
+    "platform": "Nintendo",
+    "price": 50,
+    "stock": 100,
+    "status": "Pre-order",
+    "id": 15
   }
 ]
