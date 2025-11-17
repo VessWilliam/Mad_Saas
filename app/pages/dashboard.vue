@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { capitalize } from "vue";
-import GameTable from "~/components/GameTable.vue";
+import Table from "~/components/Table.vue";
 import { useGames } from "~/composables/useGames";
 import { useAntd } from "~/composables/useAntd";
 import { useForm, Field } from "vee-validate";
@@ -106,7 +106,7 @@ const getFieldType = (field: keyof GameModel) => {
       Add Game
     </AButton>
 
-    <GameTable :games="games" @edit="openEditModal" @delete="deleteGame" />
+    <Table :games="games" @edit="openEditModal" @delete="deleteGame" />
 
     <AModal v-model:open="showModal" :title="isEditMode ? 'Edit Game' : 'Add Game'" @ok="saveGame" @cancel="closeModal">
       <AForm layout="vertical">
