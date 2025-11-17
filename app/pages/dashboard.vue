@@ -101,30 +101,29 @@ const getFieldType = (field: keyof GameModel) => {
 
 <template>
   <div class="game-management">
-    <div class="button-container">
-      <AButton type="primary" @click="openAddModal">Add Game</AButton>
-    </div>
+
+    <AButton class="mb-3" type="primary" @click="openAddModal">
+      Add Game
+    </AButton>
 
     <GameTable :games="games" @edit="openEditModal" @delete="deleteGame" />
 
     <AModal v-model:open="showModal" :title="isEditMode ? 'Edit Game' : 'Add Game'" @ok="saveGame" @cancel="closeModal">
       <AForm layout="vertical">
-        <template v-for="field in formFields" :key="field">
-          <Field :name="field" v-slot="{ value, handleChange, handleBlur, errorMessage }">
-            <AFormItem :label="formatFieldLabel(field)" :help="errorMessage"
-              :validate-status="errorMessage ? 'error' : ''">
-              <ASelect v-if="getFieldType(field) === 'select'" :value="value" :options="getFieldOptions(field)"
-                @update:value="handleChange" @blur="handleBlur" />
+        <Field v-for="field in formFields" :key="field" :name="field"
+          v-slot="{ value, handleChange, handleBlur, errorMessage }">
+          <AFormItem :label="formatFieldLabel(field)" :help="errorMessage"
+            :validate-status="errorMessage ? 'error' : ''">
 
-              <ANumberPicker v-else-if="getFieldType(field) === 'number'" :value="value ?? 0" :min="0" :step="1"
-                style="width: 100%" @update:value="handleChange" @blur="handleBlur" />
+            <ASelect v-if="getFieldType(field) === 'select'" :value="value" :options="getFieldOptions(field)"
+              @update:value="handleChange" @blur="handleBlur" />
 
-              <AInput v-else :value="value" @update:value="
-                (val) => handleFieldChange('input', val, handleChange)
-              " @blur="handleBlur" />
-            </AFormItem>
-          </Field>
-        </template>
+            <ANumberPicker v-else-if="getFieldType(field) === 'number'" :value="value ?? 0" :min="0" :step="1"
+              style="width: 100%" @update:value="handleChange" @blur="handleBlur" />
+
+            <AInput v-else :value="value" @update:value="val => handleChange(val)" @blur="handleBlur" />
+          </AFormItem>
+        </Field>
       </AForm>
     </AModal>
   </div>

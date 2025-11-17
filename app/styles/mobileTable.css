@@ -1,0 +1,66 @@
+.table-container {
+  padding: 24px;
+  padding-bottom: 0;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  border: 1px solid #0e0d0d;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: transparent;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-field {
+  margin: 0;
+  display: flex;
+  gap: 8px;
+}
+
+.card-field strong {
+  min-width: 60px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.pagination-info {
+  font-weight: 500;
+  min-width: 60px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .table-container {
+    padding: 16px;
+    padding-bottom: 60px;
+  }
+}

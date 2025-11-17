@@ -6,7 +6,7 @@
     "platform": "PC",
     "price": 34.99,
     "stock": 45,
-    "status": "Pre-order"
+    "status": "Available"
   },
   {
     "id": 4,
@@ -90,21 +90,12 @@
     "id": 13
   },
   {
-    "title": "NewGame",
-    "genre": "RPG",
+    "title": "Sonic",
+    "genre": "Racing",
     "platform": "Nintendo",
-    "price": 100,
-    "stock": 100,
-    "status": "Pre-order",
+    "price": 150,
+    "stock": 150,
+    "status": "Discontinued",
     "id": 14
-  },
-  {
-    "title": "DanDa",
-    "genre": "Comedy",
-    "platform": "Nintendo",
-    "price": 50,
-    "stock": 100,
-    "status": "Pre-order",
-    "id": 15
   }
 ]
