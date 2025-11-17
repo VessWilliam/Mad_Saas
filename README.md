@@ -25,11 +25,7 @@ experience designed for learning, prototyping, and UI experimentation.
 
 ![alt text](./images/image-2.png)
 
-![alt text](./images/image-3.png)
-
 # Mobile View
-
-![alt text](./images/image-4.png)
 
 ![alt text](./images/image-6.png)
 
