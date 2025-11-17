@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { capitalize } from "vue";
 import Table from "~/components/Table.vue";
 import { useGames } from "~/composables/useGames";
 import { useAntd } from "~/composables/useAntd";
@@ -33,6 +32,33 @@ const { handleSubmit, resetForm } = useForm<Partial<GameModel>>({
   initialValues,
 });
 
+const closeModal = () => {
+  showModal.value = false;
+  resetForm();
+};
+
+const formFields = Object.keys(gameSchema.fields).filter(
+  (f) => f !== "id"
+) as (keyof GameModel)[];
+
+const getFieldOptions = (field: keyof GameModel) =>
+  field === "status" ? statusOptions : undefined;
+
+const formatFieldLabel = (field: keyof GameModel) =>
+  field.charAt(0).toUpperCase() + field.slice(1);
+
+const getFieldType = (field: keyof GameModel) => {
+  switch (field) {
+    case "price":
+    case "stock":
+      return "number";
+    case "status":
+      return "select";
+    default:
+      return "input";
+  }
+};
+
 const openAddModal = () => {
   editModel.value = null;
   isEditMode.value = false;
@@ -48,6 +74,7 @@ const openEditModal = (game: GameModel) => {
 };
 
 const saveGame = handleSubmit(async (gameData) => {
+
   editModel.value
     ? await updateGame(editModel.value.id, gameData)
     : await addGame(gameData);
@@ -55,53 +82,10 @@ const saveGame = handleSubmit(async (gameData) => {
   showModal.value = false;
   resetForm();
 });
-
-const closeModal = () => {
-  showModal.value = false;
-  resetForm();
-};
-
-const formFields = Object.keys(gameSchema.fields).filter(
-  (f) => f !== "id"
-) as (keyof GameModel)[];
-
-
-const getFieldOptions = (field: keyof GameModel) =>
-  field === "status" ? statusOptions : undefined;
-
-const formatFieldLabel = (field: keyof GameModel) =>
-  field.charAt(0).toUpperCase() + field.slice(1);
-
-const handleFieldChange = (type: string, val: any, handleChange: Function) => {
-  switch (type) {
-    case "input":
-      handleChange(capitalize(val));
-      break;
-    case "number":
-      handleChange(Number(val));
-      break;
-    default:
-      handleChange(val);
-      break;
-  }
-};
-
-const getFieldType = (field: keyof GameModel) => {
-  switch (field) {
-    case "price":
-    case "stock":
-      return "number";
-    case "status":
-      return "select";
-    default:
-      return "input";
-  }
-};
 </script>
 
 <template>
   <div class="game-management">
-
     <AButton class="mb-3" type="primary" @click="openAddModal">
       Add Game
     </AButton>
@@ -114,14 +98,13 @@ const getFieldType = (field: keyof GameModel) => {
           v-slot="{ value, handleChange, handleBlur, errorMessage }">
           <AFormItem :label="formatFieldLabel(field)" :help="errorMessage"
             :validate-status="errorMessage ? 'error' : ''">
-
             <ASelect v-if="getFieldType(field) === 'select'" :value="value" :options="getFieldOptions(field)"
               @update:value="handleChange" @blur="handleBlur" />
 
             <ANumberPicker v-else-if="getFieldType(field) === 'number'" :value="value ?? 0" :min="0" :step="1"
               style="width: 100%" @update:value="handleChange" @blur="handleBlur" />
 
-            <AInput v-else :value="value" @update:value="val => handleChange(val)" @blur="handleBlur" />
+            <AInput v-else :value="value" @update:value="(val) => handleChange(val)" @blur="handleBlur" />
           </AFormItem>
         </Field>
       </AForm>
