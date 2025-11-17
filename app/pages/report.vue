@@ -93,17 +93,14 @@ const lineConfig = computed(() => ({
 
 <template>
   <div class="report-container">
-    <h1 
-      :style="{ 
-        fontSize: windowWidth < 768 ? '20px' : '28px', 
-        marginBottom: '24px',
-        marginTop: 0
-      }"
-    >
+    <h1 :style="{
+      fontSize: windowWidth < 768 ? '20px' : '28px',
+      marginBottom: '24px',
+      marginTop: 0
+    }">
       📊 Game Reports & Analytics
     </h1>
 
-    <!-- Charts Row -->
     <ARow :gutter="[16, 16]">
       <ACol :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
         <ACard title="Price per Game" :bordered="false">
@@ -128,24 +125,4 @@ const lineConfig = computed(() => ({
   </div>
 </template>
 
-<style scoped>
-.report-container {
-  padding: 24px;
-  padding-bottom: 80px;
-}
-
-@media (max-width: 768px) {
-  .report-container {
-    padding: 16px;
-    padding-bottom: 60px;
-  }
-
-  :deep(.ant-card-body) {
-    padding: 12px;
-  }
-
-  :deep(.ant-card-head-title) {
-    font-size: 14px;
-  }
-}
-</style>
+<style scoped src="~/styles/report.css"></style>

@@ -1,0 +1,19 @@
+.report-container {
+  padding: 24px;
+  padding-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+  .report-container {
+    padding: 16px;
+    padding-bottom: 60px;
+  }
+
+  :deep(.ant-card-body) {
+    padding: 12px;
+  }
+
+  :deep(.ant-card-head-title) {
+    font-size: 14px;
+  }
+}

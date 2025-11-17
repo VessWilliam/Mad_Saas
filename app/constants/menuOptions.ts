@@ -1,5 +1,5 @@
 export const menu = [
     { key:'/', label:'Home' },
     { key:'/dashboard', label:'Dashboard' },
-    { key:'/reports', label:'Report' },
+    { key:'/report', label:'Report' },
 ]

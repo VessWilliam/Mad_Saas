@@ -3,7 +3,7 @@ import { useAntd } from "~/composables/useAntd";
 
 const { AButton, ATag } = useAntd();
 
-export const gameColumns = (emit: any) => [
+export const tableColumns = (emit: any) => [
   {
     title: "Title",
     dataIndex: "title",

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useAntd } from '~/composables/useAntd';
-import { gameColumns } from '~/constants/gameColumns';
+import { tableColumns } from '~/constants/tableColumns';
 import { useDevice } from '~/composables/useDevice';
 import type { GameModel } from "~/types/game_model";
 
@@ -34,7 +34,7 @@ const prevPage = () => currentPage.value > 1 && currentPage.value--
 
 
 <template>
-  <ATable v-if="!isMobile" :data-source="props.games" :columns="gameColumns(emit)" />
+  <ATable v-if="!isMobile" :data-source="props.games" :columns="tableColumns(emit)" />
 
   <template v-if="isMobile">
 
